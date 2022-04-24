@@ -23,12 +23,14 @@ const INITIAL_STATE: State = {
     maxPage: 0,
 }
 
+const CHARACTERS_PER_PAGE = 10
+
 export const ProviderStartWars = ({ children }: Props) => {
 
     const [state, dispatch] = useReducer(reducerStarWars, INITIAL_STATE);
 
     const onLoadCharacters = useCallback(async () => {
-        const CHARACTERS_PER_PAGE = 10
+        
         const { results, count } = await apiStarWars.getCharacters(state.currentPage)
         const maxPage = Math.ceil(count / CHARACTERS_PER_PAGE);
 
